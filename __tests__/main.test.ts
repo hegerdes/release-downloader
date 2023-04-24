@@ -26,53 +26,53 @@ beforeEach(() => {
   downloader = new ReleaseDownloader(httpClent, githubApiUrl)
 
   nock("https://api.github.com")
-    .get("/repos/robinraju/probable-potato/releases/latest")
+    .get("/repos/hegerdes/probable-potato/releases/latest")
     .reply(200, readFromFile("1-release-latest.json"))
 
   nock("https://api.github.com")
-    .get("/repos/robinraju/probable-potato/releases/68092191")
+    .get("/repos/hegerdes/probable-potato/releases/68092191")
     .reply(200, readFromFile("1-release-latest.json"))
 
   nock("https://api.github.com", {
     reqheaders: {accept: "application/octet-stream"}
   })
-    .get("/repos/robinraju/probable-potato/releases/assets/66946546")
+    .get("/repos/hegerdes/probable-potato/releases/assets/66946546")
     .replyWithFile(200, __dirname + "/resource/assets/test-1.txt")
 
   nock("https://api.github.com", {
     reqheaders: {accept: "application/octet-stream"}
   })
-    .get("/repos/robinraju/probable-potato/releases/assets/66946547")
+    .get("/repos/hegerdes/probable-potato/releases/assets/66946547")
     .replyWithFile(200, __dirname + "/resource/assets/test-2.txt")
 
   nock("https://api.github.com", {
     reqheaders: {accept: "application/octet-stream"}
   })
-    .get("/repos/robinraju/probable-potato/releases/assets/66946548")
+    .get("/repos/hegerdes/probable-potato/releases/assets/66946548")
     .replyWithFile(200, __dirname + "/resource/assets/3-test.txt")
 
   nock("https://api.github.com", {
     reqheaders: {accept: "application/octet-stream"}
   })
-    .get("/repos/robinraju/probable-potato/releases/assets/66946549")
+    .get("/repos/hegerdes/probable-potato/releases/assets/66946549")
     .replyWithFile(200, __dirname + "/resource/assets/downloader-test.pdf")
 
   nock("https://api.github.com", {
     reqheaders: {accept: "application/octet-stream"}
   })
-    .get("/repos/robinraju/probable-potato/releases/assets/66946550")
+    .get("/repos/hegerdes/probable-potato/releases/assets/66946550")
     .replyWithFile(200, __dirname + "/resource/assets/lorem-ipsum.pdf")
 
   nock("https://api.github.com", {
     reqheaders: {accept: "application/octet-stream"}
   })
-    .get("/repos/robinraju/probable-potato/releases/assets/66946552")
+    .get("/repos/hegerdes/probable-potato/releases/assets/66946552")
     .replyWithFile(200, __dirname + "/resource/assets/archive-example.zip")
 
   nock("https://api.github.com", {
     reqheaders: {accept: "application/octet-stream"}
   })
-    .get("/repos/robinraju/probable-potato/releases/assets/66946551")
+    .get("/repos/hegerdes/probable-potato/releases/assets/66946551")
     .replyWithFile(200, __dirname + "/resource/assets/file_example.csv")
 
   nock("https://my-gh-host.com/api/v3")
@@ -98,7 +98,7 @@ function readFromFile(fileName: string): string {
 
 test("Download all files from public repo", async () => {
   const downloadSettings: IReleaseDownloadSettings = {
-    sourceRepoPath: "robinraju/probable-potato",
+    sourceRepoPath: "hegerdes/probable-potato",
     isLatest: true,
     tag: "",
     id: "",
@@ -113,7 +113,7 @@ test("Download all files from public repo", async () => {
 
 test("Download single file from public repo", async () => {
   const downloadSettings: IReleaseDownloadSettings = {
-    sourceRepoPath: "robinraju/probable-potato",
+    sourceRepoPath: "hegerdes/probable-potato",
     isLatest: true,
     tag: "",
     id: "",
@@ -128,7 +128,7 @@ test("Download single file from public repo", async () => {
 
 test("Fail loudly if given filename is not found in a release", async () => {
   const downloadSettings: IReleaseDownloadSettings = {
-    sourceRepoPath: "robinraju/probable-potato",
+    sourceRepoPath: "hegerdes/probable-potato",
     isLatest: true,
     tag: "",
     id: "",
@@ -145,7 +145,7 @@ test("Fail loudly if given filename is not found in a release", async () => {
 
 test("Fail loudly if release is not identified", async () => {
   const downloadSettings: IReleaseDownloadSettings = {
-    sourceRepoPath: "robinraju/probable-potato",
+    sourceRepoPath: "hegerdes/probable-potato",
     isLatest: false,
     tag: "",
     id: "",
@@ -162,7 +162,7 @@ test("Fail loudly if release is not identified", async () => {
 
 test("Download files with wildcard from public repo", async () => {
   const downloadSettings: IReleaseDownloadSettings = {
-    sourceRepoPath: "robinraju/probable-potato",
+    sourceRepoPath: "hegerdes/probable-potato",
     isLatest: true,
     tag: "",
     id: "",
@@ -177,7 +177,7 @@ test("Download files with wildcard from public repo", async () => {
 
 test("Download single file with wildcard from public repo", async () => {
   const downloadSettings: IReleaseDownloadSettings = {
-    sourceRepoPath: "robinraju/probable-potato",
+    sourceRepoPath: "hegerdes/probable-potato",
     isLatest: true,
     tag: "",
     id: "",
@@ -192,7 +192,7 @@ test("Download single file with wildcard from public repo", async () => {
 
 test("Download multiple pdf files with wildcard filename", async () => {
   const downloadSettings: IReleaseDownloadSettings = {
-    sourceRepoPath: "robinraju/probable-potato",
+    sourceRepoPath: "hegerdes/probable-potato",
     isLatest: true,
     tag: "",
     id: "",
@@ -207,7 +207,7 @@ test("Download multiple pdf files with wildcard filename", async () => {
 
 test("Download a csv file with wildcard filename", async () => {
   const downloadSettings: IReleaseDownloadSettings = {
-    sourceRepoPath: "robinraju/probable-potato",
+    sourceRepoPath: "hegerdes/probable-potato",
     isLatest: true,
     tag: "",
     id: "",
@@ -239,7 +239,7 @@ test("Download file from Github Enterprise server", async () => {
 
 test("Download file from release identified by ID", async () => {
   const downloadSettings: IReleaseDownloadSettings = {
-    sourceRepoPath: "robinraju/probable-potato",
+    sourceRepoPath: "hegerdes/probable-potato",
     isLatest: false,
     tag: "",
     id: "68092191",
@@ -255,7 +255,7 @@ test("Download file from release identified by ID", async () => {
 test("Download all archive files from public repo", async () => {
   const extract_assats = true
   const downloadSettings: IReleaseDownloadSettings = {
-    sourceRepoPath: "robinraju/probable-potato",
+    sourceRepoPath: "hegerdes/probable-potato",
     isLatest: true,
     tag: "",
     id: "",

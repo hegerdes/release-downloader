@@ -18,9 +18,9 @@ jobs:
           - macos-latest
           - windows-latest
     runs-on: ${{ matrix.os }}
-    
+
     steps:
-    
+
     - name: Checkout Repo
       uses: actions/checkout@v3
 
@@ -30,23 +30,23 @@ jobs:
         node-version: 16
         cache: 'npm'
 
-    - name: Build and test 
+    - name: Build and test
       shell: bash
       run: |
         npm ci
         npm run all
-    
+
     - name: Run action
       uses: ./
       id: download-public
-      with: 
-        repository: "robinraju/probable-potato"
+      with:
+        repository: "hegerdes/probable-potato"
         tag: "1.0.1"
         fileName: "potato.jpeg"
         tarBall: true
         zipBall: true
         out-file-path: "./test-downloads"
-          
+
     - name: List downloaded files
       shell: bash
       run: ls -lrth test-downloads
@@ -55,7 +55,7 @@ jobs:
       uses: ./
       id: download-private
       with:
-        repository: "robinraju/release-downloader-test"
+        repository: "hegerdes/release-downloader-test"
         latest: true
         fileName: "*"
         tarBall: true
